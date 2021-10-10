@@ -3,10 +3,45 @@ import githubApiServices from '../../apiServices/github';
 import './Search.scss';
 
 const Search = ({setRepositories, loading, setLoading}) => {
+  
+  const languages = [
+    'All',
+    'JavaScript',
+    'Python',
+    'Java',
+    'C++',
+    'C',
+    'PHP',
+    'C#',
+    'Shell',
+    'Go',
+    'TypeScript',
+    'Ruby',
+    'Jupyter Notebook',
+    'Objective-C',
+    'Swift',
+    'Kotlin',
+    'Rust',
+    'R',
+    'Scala',
+    'Lua',
+    'Powershell',
+    'Matlab',
+    'CoffeeScript',
+    'Perl',
+    'Groovy',
+    'Haskell',
+  ];
 
   const [inputValue, setInputValue] = useState('');
-  const [invalidFormMessage, setInvalidFormMessage] = useState('')
-  const [error, setError] = useState('')
+  const [invalidFormMessage, setInvalidFormMessage] = useState('');
+  const [error, setError] = useState('');
+  const [resultsFilter, setResultsFilter] = useState('best-match');
+  const [languageFilter, setLanguageFilter] = useState(languages[0]);
+
+  const dropdownOptions = languages.map(language => {
+    return <option key={language} value={language}>{language}</option>
+  })
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -19,7 +54,7 @@ const Search = ({setRepositories, loading, setLoading}) => {
 
   const handleSearch = async (inputValue) => {
     setLoading(true);
-    const queryResults = await githubApiServices.getRepositories(inputValue);
+    const queryResults = await githubApiServices.getRepositories(inputValue, resultsFilter, languageFilter);
     if (!queryResults.error) {
       const filteredResults = queryResults.map(({id, language, name, owner, watchers, url, updated_at}) => ({id, language, name, owner, watchers, url, updated_at}));
       setRepositories(filteredResults);
@@ -50,6 +85,18 @@ const Search = ({setRepositories, loading, setLoading}) => {
           Search
         </button>
       </form>
+      <section className="filters">
+        <label className="search-label" htmlFor="search">Search By:</label>
+        <select name="search" className="search-dropdown" onChange={e => setResultsFilter(e.target.value)}>
+          <option value="best-match">Best Match</option>
+          <option value="stars">Number of Stars</option>
+        </select>
+        <label className="sort-label" htmlFor="sort">Sort By Language: </label>
+        <select name="language" className="language-dropdown" onChange={e => setLanguageFilter(e.target.value)}>
+          {dropdownOptions}
+        </select>
+      </section>
+      <hr style={{width: '70%'}}/>
     </section>
   )
 }
