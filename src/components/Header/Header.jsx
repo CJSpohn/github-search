@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <section className="header-section">
       <h1 className="header-title">GitHub Repository Search</h1>
-      <p>Search for any repository by name. Click to see its details.</p>
+      <p className="header-subtitle">Search for any repository by name. Click to see its details.</p>
     </section>
   )
 }

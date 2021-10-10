@@ -3,16 +3,18 @@
 .search {
   @include flex-column;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .submission-form {
-  display: flex;
-  align-items: center;
-  width: 100%;
+  @include flex-row;
+  justify-content: center;
+  width: 50%;
   margin-top: 20px;
 
   .search-bar {
-    width: 500px;
+    width: 50%;
+    min-width: 210px;
     height: 25px;
     margin-right: 10px;
   }

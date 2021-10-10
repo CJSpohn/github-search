@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import githubApiServices from '../../apiServices/github';
 import './Search.scss';
 
-const Search = ({setRepositories}) => {
+const Search = ({setRepositories, loading, setLoading}) => {
 
   const [inputValue, setInputValue] = useState('');
-  const [InvalidFormMessage, setInvalidFormMessage] = useState('')
+  const [invalidFormMessage, setInvalidFormMessage] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -17,9 +18,17 @@ const Search = ({setRepositories}) => {
   }
 
   const handleSearch = async (inputValue) => {
-    const queryResults = await githubApiServices.getRepositories(inputValue, clearInput);
-    const filteredResults = queryResults.map(({id, language, name, owner, watchers, url, updated_at}) => ({id, language, name, owner, watchers, url, updated_at}));
-    setRepositories(filteredResults);
+    setLoading(true);
+    const queryResults = await githubApiServices.getRepositories(inputValue);
+    if (!queryResults.error) {
+      const filteredResults = queryResults.map(({id, language, name, owner, watchers, url, updated_at}) => ({id, language, name, owner, watchers, url, updated_at}));
+      setRepositories(filteredResults);
+      setLoading(false);
+      clearInput()
+    } else {
+      setError(queryResults.error);
+      setLoading(false);
+    }
   }
 
   const clearInput = () => {
@@ -38,7 +47,7 @@ const Search = ({setRepositories}) => {
           value={inputValue}
         />
         <button className="search-btn">
-          Find Repository
+          Search
         </button>
       </form>
     </section>

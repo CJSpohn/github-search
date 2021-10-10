@@ -9,13 +9,10 @@ import moment from 'moment';
 const ResultCard = ({repositoryDetails}) => {
   const {name, id, language, owner, updated_at, watchers} = repositoryDetails;
 
-  const handleClick = () => {
-
-  }
-
+  const filteredName = name.length > 25 ? name.slice(0, 25) + '...' : name;
   return (
-    <Link className="result-card" to={`/repository/results/${id}`} onClick={handleClick}>
-      <h1 className="repo-name">{name}</h1>
+    <Link className="result-card" to={`/repository/results/${owner.login}/${name}`}>
+      <h1 className="repo-name">{filteredName}</h1>
       <div className="repo-details">
         <img className="octocat" src={octocat}/>
         <div className="line-item-details">
