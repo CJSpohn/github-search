@@ -1,13 +1,21 @@
 import React, {useState} from 'react';
 import {Switch, Route} from "react-router-dom";
 import Header from '../src/components/Header/Header';
-import './App.css';
+import Search from '../src/components/Search/Search';
+import SearchResults from '../src/components/SearchResults/SearchResults';
+import './App.scss';
 
 const App = () => {
+  const [repositories, setRepositories] = useState([])
+
   return (
     <Switch>
       <Route exact path="/">
-        <Header/>
+        <div className="home-page">
+          <Header/>
+          <Search setRepositories={setRepositories}/>
+          <SearchResults results={repositories}/>
+        </div>
       </Route>
       <Route exact path="/search/repo-name/:id">
         <Header/>
