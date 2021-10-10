@@ -17,7 +17,7 @@ const Search = ({setRepositories}) => {
   }
 
   const handleSearch = async (inputValue) => {
-    const queryResults = await githubApiServices.getRepositories(inputValue);
+    const queryResults = await githubApiServices.getRepositories(inputValue, clearInput);
     const filteredResults = queryResults.map(({id, language, name, owner, watchers, url, updated_at}) => ({id, language, name, owner, watchers, url, updated_at}));
     setRepositories(filteredResults);
   }

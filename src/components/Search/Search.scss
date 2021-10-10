@@ -2,6 +2,7 @@
 
 .search {
   @include flex-column;
+  margin-bottom: 20px;
 }
 
 .submission-form {

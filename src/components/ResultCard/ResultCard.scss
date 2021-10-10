@@ -1,3 +1,67 @@
+@import '../../styles/layout';
+@import '../../styles/colors';
+
+a:visited,
+a:link,
+a:hover {
+  color: black;
+}
+
 .result-card {
-  border: 1px solid black;
+  @include flex-column;
+  width: 95%;
+  height: 80px;
+  background-color: $medium-ash;
+  padding-right: 15px;
+  border-bottom: 1px solid $gray;
+  margin-bottom: 2px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $dark-ash;
+    width: 96%;
+    border: 1px solid $gray;
+  }
+  p {
+    margin: 2px 0 2px 0;
+  }
+
+  .repo-name {
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 0;
+    font-size: 1.2em;
+  }
+
+  .repo-details{
+    @include flex-row;
+    justify-content: flex-start;
+    width: 100%;
+    .octocat {
+      width: 50px;
+      margin: -10px 10px 0 10px;
+    }
+
+    .line-item-details {
+      @include flex-row;
+      justify-content: space-between;
+      width: 100%;
+
+      .icon-container {
+        @include flex-row;
+        justify-content: flex-end;
+
+        .icon {
+          margin-right: 5px;
+          width: 20px;
+        }
+      }
+
+      .repo-watchers, 
+      .repo-last-updated {
+        text-align: right; 
+      }
+    }
+
+  }
 }

@@ -1,0 +1,7 @@
+@import '../../styles/layout';
+
+.search-results {
+  @include flex-column;
+  width: 60%;
+  max-width: 1200px;
+}

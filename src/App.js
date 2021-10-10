@@ -6,7 +6,8 @@ import SearchResults from '../src/components/SearchResults/SearchResults';
 import './App.scss';
 
 const App = () => {
-  const [repositories, setRepositories] = useState([])
+  const fakeData = {id: 123, name: "Chris-test-repo", owner: {login: "CJSpohn"}, language: "JavasScript", url:"https://www.testurl.com", watchers: 206, updated_at: "2021-09-13T19:13:26Z"};
+  const [repositories, setRepositories] = useState([]);
 
   return (
     <Switch>

@@ -1,8 +1,6 @@
 const githubApiServices = {
-  getRepositories: async ({searchTerm}) => {
-
-    const url = 'https://api.github.com/search/repositories?q=' + searchTerm;
-
+  getRepositories: async (searchTerm, clearInput) => {
+    const url = 'https://api.github.com/search/repositories?q=' + searchTerm.replaceAll(' ', '');
     try {
       const promise = await fetch(url, {
         headers: {
@@ -10,6 +8,7 @@ const githubApiServices = {
         }
       });
       const data = await promise.json();
+      clearInput();
       return data.items;
     } catch (e) {
       console.log(e)
