@@ -1,0 +1,6 @@
+@import 'styles/layout';
+
+.home-page {
+  @include flex-column;
+  width: 100%;
+}

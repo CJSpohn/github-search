@@ -1,0 +1,12 @@
+@import '../../styles/layout';
+
+.header-section {
+  @include flex-column;
+  margin-top: 50px;
+  width: 50%;
+  max-width: 1200px;
+
+  .header-title {
+    margin-bottom: 0;
+  }
+}
