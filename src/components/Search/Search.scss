@@ -4,22 +4,32 @@
   @include flex-column;
   margin-bottom: 20px;
   width: 100%;
-}
 
-.submission-form {
-  @include flex-row;
-  justify-content: center;
-  width: 50%;
-  margin-top: 20px;
-
-  .search-bar {
+  .submission-form {
+    @include flex-row;
+    justify-content: center;
     width: 50%;
-    min-width: 210px;
-    height: 25px;
-    margin-right: 10px;
+    margin-top: 20px;
+
+    .search-bar {
+      width: 50%;
+      min-width: 210px;
+      height: 25px;
+      margin-right: 10px;
+    }
+    
+    .search-btn {
+      height: 30px;
+    }
   }
-  
-  .search-btn {
-    height: 30px;
+
+  .filters {
+    margin-top: 10px;
+    .search-label {
+      margin-right: 10px;
+    }
+    .search-dropdown {
+      margin-right: 10px;
+    }
   }
 }
