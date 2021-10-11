@@ -1,15 +1,52 @@
 @import '../../styles/colors';
 @import '../../styles/layout';
+@import '../../styles/media-queries';
 
 .repo-details {
   @include flex-column;
   width: 100%;
+
   .repo-card {
     @include flex-column;
     width: 50%;
-    height: 600px;
+    max-width: 500px;
+    height: 400px;
     background-color: $medium-ash;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  
+    .details {
+      margin-bottom: 45px;
+      text-align: center;
+
+      p {
+        margin: 2px;
+      }
+
+      .row  {
+        @include flex-row;     
+        justify-content: center;
+        .icon {
+          width: 25px;
+        }
+      }
+    }
+    .user-logo {
+      width: 50px;
+      margin-bottom: 30px;
+    }
+
+    .github-logo {
+      margin-bottom: 20px;
+      width: 50px;
+    }
+    @include media-query('phone-lg') {
+      width: 80%;
+    }
   }
+
+}
+
+.home-link {
+  margin-top: 40px;
 }
