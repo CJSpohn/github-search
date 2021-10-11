@@ -15,8 +15,12 @@ const githubApiServices = {
           accept: 'application/vnd.github.v3+json'
         }
       });
-      const data = await promise.json();
-      return data.items;
+      if (promise.status === 200) {
+        const data = await promise.json();
+        return data.items;
+      } else {
+        throw new Error('Something went wrong with your search. Please try again.')
+      }
     } catch (e) {
       return {error: e};
     }
@@ -31,8 +35,12 @@ const githubApiServices = {
           accept: 'application/vnd.github.v3+json'
         }
       });
-      const data = await promise.json();
-      return data;
+      if (promise.status === 200) {
+        const data = await promise.json();
+        return data;
+      } else {
+        throw new Error('Uh oh. We couldn\'t find anything with that name.'); 
+      }
     } catch(e) {
       return {error: e}
     }
