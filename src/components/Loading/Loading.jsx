@@ -10,7 +10,7 @@ const Loading = ({details}) => {
           <rect x="75" y="0" rx="2" ry="2" width="250" height="100"/>
         </ContentLoader> : 
         <>
-          <ContentLoader viewbox="0 0 100 100" width="200" height="75">
+          <ContentLoader viewBox="0 0 100 100" width="200" height="75">
             <rect x="0" y="0" rx="2" ry="2" width="200" height="50"/>
           </ContentLoader>
           <ContentLoader viewBox="0 0 400 100" style={{width: '1000px', height: '250px'}}>

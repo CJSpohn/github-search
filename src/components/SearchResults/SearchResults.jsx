@@ -15,7 +15,7 @@ const SearchResults = ({results, searchTerm, loading}) => {
     <>
       {loading ? <Loading/> :
       <section className="search-results">
-        {searchTerm.length > 0 && <h1 className="search-term">Searching for: {searchTerm}</h1>}
+        {searchTerm.length > 0 && results !== null && <h1 className="search-term">Results for: {searchTerm}</h1>}
         {formattedResults?.length === 0 ? 
             <h3 className="no-results">No Results Found.</h3> :
             formattedResults

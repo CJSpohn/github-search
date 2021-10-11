@@ -5,6 +5,7 @@
   @include flex-column;
   width: 60%;
   max-width: 800px;
+  margin-bottom: 40px;
 
   @include media-query('tablet-lg') {
     width: 70%;

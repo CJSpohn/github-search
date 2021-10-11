@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import githubApiServices from '../../apiServices/github';
@@ -12,6 +12,12 @@ const Search = ({setRepositories, setSearchTerm, setLoading}) => {
   const [error, setError] = useState('');
   const [resultsFilter, setResultsFilter] = useState('best-match');
   const [languageFilter, setLanguageFilter] = useState(languages[0]);
+
+  useEffect(() => {
+    if (error.length) {
+      setRepositories(null);
+    }
+  }, [error])
 
   const dropdownOptions = languages.map(language => {
     return <option key={language} value={language}>{language}</option>
@@ -53,14 +59,14 @@ const Search = ({setRepositories, setSearchTerm, setLoading}) => {
 
   return (
     <section className="search">
-      {invalidFormMessage && <p className="search-term-error">Please enter a valid search term.</p>}
+      {invalidFormMessage && <p className="search-term-error">Please enter more than three characters.</p>}
       <form className="submission-form" onSubmit={e => handleSubmit(e)}>
         <input 
           type="text"
           name="repository-name"
           className="search-bar"
           aria-label="Enter a GitHub repository name"
-          placeholder="Enter a GitHub repository name:"
+          placeholder="Enter Name"
           onChange={e => handleChange(e)}
           value={inputValue}
         />
