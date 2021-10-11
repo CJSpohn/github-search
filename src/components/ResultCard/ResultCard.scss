@@ -1,5 +1,6 @@
 @import '../../styles/layout';
 @import '../../styles/colors';
+@import '../../styles/media-queries';
 
 a:visited,
 a:link,
@@ -65,5 +66,13 @@ a:hover {
       }
     }
 
+  }
+
+  @include media-query('tablet-mid') {
+    height: 90px;
+  }
+
+  @include media-query('phone-lg') {
+    height: 100px;
   }
 }
