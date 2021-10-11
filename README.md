@@ -3,9 +3,8 @@
 
 Live site: https://github-searcher-spohn.herokuapp.com/
 
-<img src="https://user-images.githubusercontent.com/69563078/136864340-68c43ce0-8e22-46e2-bdd5-37835f509382.png" width="400px"/>
+<img src="https://user-images.githubusercontent.com/69563078/136864542-2a85f914-c64e-41df-ac7d-6abd734e00bd.png" width="400px"/>
 <img src="https://user-images.githubusercontent.com/69563078/136864372-64d698e8-b055-4121-b6de-32e0141cbdb6.png" width="400px"/>
-
 
 ## Technologies
 
