@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Switch, Route} from "react-router-dom";
-import Header from '../src/components/Header/Header';
-import Search from '../src/components/Search/Search';
-import SearchResults from '../src/components/SearchResults/SearchResults';
-import RepoDetails from '../src/components/RepoDetails/RepoDetails';
+import Header from './components/Header/Header';
+import Search from './components/Search/Search';
+import SearchResults from './components/SearchResults/SearchResults';
+import RepoDetails from './components/RepoDetails/RepoDetails';
 import './App.scss';
 
 const App = () => {

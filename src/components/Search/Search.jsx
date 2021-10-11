@@ -34,18 +34,21 @@ const Search = ({setRepositories, setSearchTerm, setLoading}) => {
 
   const handleSearch = async (inputValue) => {
     setLoading(true);
+    // error handling happening in github.js to minimize code here
     const queryResults = await githubApiServices.getRepositories(inputValue, resultsFilter, languageFilter);
+
     if (!queryResults.error) {
-      const filteredResults = queryResults.map(({id, language, name, owner, watchers, url, updated_at}) => ({id, language, name, owner, watchers, url, updated_at}));
-      setRepositories(filteredResults);
+      setRepositories(queryResults);
       setLoading(false);
       setSearchTerm(inputValue);
       setError('');
       clearInput();
+
     } else {
       setError(queryResults.error.message);
       setLoading(false);
     }
+
   }
 
   const clearInput = () => {

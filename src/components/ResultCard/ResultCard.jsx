@@ -5,12 +5,11 @@ import {Link} from 'react-router-dom';
 
 import './ResultCard.scss';
 
-import eye from '../../assets/eye.png'
+import eye from '../../assets/eyeImg.png'
 
-const ResultCard = ({repositoryDetails}) => {
-  const {name, language, owner, updated_at, watchers} = repositoryDetails;
-
+const ResultCard = ({repositoryDetails: {name, language, owner, updated_at, watchers}}) => {
   const filteredName = name.length > 25 ? name.slice(0, 25) + '...' : name;
+
   return (
     <Link className="result-card" to={`/repository/results/${owner.login}/${name}`}>
       <h1 className="repo-name">{filteredName}</h1>
