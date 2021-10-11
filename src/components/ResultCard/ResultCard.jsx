@@ -1,7 +1,7 @@
 import React from 'react';
 import './ResultCard.scss';
-import octocat from '../../assets/octocat.png'
 import eye from '../../assets/eye.png'
+import PropTypes from 'prop-types';
 
 import {Link} from 'react-router-dom';
 import moment from 'moment';
@@ -14,7 +14,7 @@ const ResultCard = ({repositoryDetails}) => {
     <Link className="result-card" to={`/repository/results/${owner.login}/${name}`}>
       <h1 className="repo-name">{filteredName}</h1>
       <div className="repo-details">
-        <img className="octocat" src={octocat}/>
+        <img className="octocat" src={owner.avatar_url}/>
         <div className="line-item-details">
           <div>
             <p className="repo-owner">Owner: {owner.login}</p>
@@ -31,6 +31,16 @@ const ResultCard = ({repositoryDetails}) => {
       </div>
     </Link>
   )
+}
+
+ResultCard.propTypes = {
+  repositoryDetails: PropTypes.shape({
+    id: PropTypes.number,
+    language: PropTypes.string,
+    name: PropTypes.string,
+    owner: PropTypes.object,
+    watchers: PropTypes.number,
+  }).isRequired,
 }
 
 export default ResultCard;
