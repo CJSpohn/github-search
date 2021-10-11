@@ -27,4 +27,4 @@ To run the project locally:
 
 ## Notes
 
-This project has very limited test coverage. While I wanted to provide some demonstration of testing, I in no way consider this a comprehensive test suite. Rather, it is a simple demonstration of how I would setup and write unit tests. 
+This project has very limited test coverage. While I wanted to provide some demonstration of testing, I also wanted to be cognizant of time invested and I have left test coverage very minimal. I in no way consider this a comprehensive test suite. Rather, it is a simple demonstration of how I would setup and write unit tests.
