@@ -69,10 +69,10 @@ a:hover {
   }
 
   @include media-query('tablet-mid') {
-    height: 90px;
+    height: 100px;
   }
 
   @include media-query('phone-lg') {
-    height: 100px;
+    height: 110px;
   }
 }
