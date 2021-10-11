@@ -1,36 +1,11 @@
 import React, {useState} from 'react';
-import githubApiServices from '../../apiServices/github';
-import './Search.scss';
-
 import PropTypes from 'prop-types';
 
+import githubApiServices from '../../apiServices/github';
+import languages from '../../constants/languages';
+import './Search.scss';
+
 const Search = ({setRepositories, setSearchTerm, setLoading}) => {
-  
-  const languages = [
-    'All',
-    'JavaScript',
-    'Python',
-    'Java',
-    'C',
-    'PHP',
-    'Shell',
-    'Go',
-    'TypeScript',
-    'Ruby',
-    'Objective-C',
-    'Swift',
-    'Kotlin',
-    'Rust',
-    'R',
-    'Scala',
-    'Lua',
-    'Powershell',
-    'Matlab',
-    'CoffeeScript',
-    'Perl',
-    'Groovy',
-    'Haskell',
-  ];
 
   const [inputValue, setInputValue] = useState('');
   const [invalidFormMessage, setInvalidFormMessage] = useState('');
@@ -59,9 +34,10 @@ const Search = ({setRepositories, setSearchTerm, setLoading}) => {
       setRepositories(filteredResults);
       setLoading(false);
       setSearchTerm(inputValue);
+      setError('');
       clearInput();
     } else {
-      setError(queryResults.error);
+      setError(queryResults.error.message);
       setLoading(false);
     }
   }
@@ -108,6 +84,7 @@ const Search = ({setRepositories, setSearchTerm, setLoading}) => {
         </div>
       </section>
       <hr className="hr"/>
+      {error.length > 0 && <h1 className="error-message">{error}</h1>}
     </section>
   )
 }

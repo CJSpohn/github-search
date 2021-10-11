@@ -26,7 +26,7 @@ const App = () => {
         </div>
       </Route>
       <Route>
-        <h1>nothing here</h1>
+        <h1 className="blank-page">We haven't built a page at this location :(</h1>
       </Route>
   </Switch>
   );

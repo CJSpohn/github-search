@@ -1,0 +1,27 @@
+const languages = [
+  'All',
+  'JavaScript',
+  'Python',
+  'Java',
+  'C',
+  'PHP',
+  'Shell',
+  'Go',
+  'TypeScript',
+  'Ruby',
+  'Objective-C',
+  'Swift',
+  'Kotlin',
+  'Rust',
+  'R',
+  'Scala',
+  'Lua',
+  'Powershell',
+  'Matlab',
+  'CoffeeScript',
+  'Perl',
+  'Groovy',
+  'Haskell',
+];
+
+export default languages;

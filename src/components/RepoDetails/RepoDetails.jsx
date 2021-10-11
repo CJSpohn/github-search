@@ -1,25 +1,29 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
+import moment from 'moment';
+
 import githubApiServices from '../../apiServices/github';
 import Loading from '../Loading/Loading';
-import octocat from '../../assets/octocat.png';
-import eye from '../../assets/eye.png';
-import star from '../../assets/star.png';
-
 import './RepoDetails.scss';
 
-import {useParams} from 'react-router-dom';
-import moment from 'moment';
+import eye from '../../assets/eye.png';
+import octocat from '../../assets/octocat.png';
+import star from '../../assets/star.png';
 
 const RepoDetails = () => {
   const {owner, name} = useParams();
-  const [loading, setLoading] = useState(true);
+
   const [repoDetails, setRepoDetails] = useState(null);
-  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const populateRepoDetails = async () => {
       const data = await githubApiServices.getIndividualRepository(owner, name);
+      setLoading(false);
+      if (data.error) {
+        return setError(data.error.message);
+      }
       const filteredData = {
         name: data.name,
         dateCreated: moment(data.created_at).format('MM-DD-YYYY'),
@@ -30,36 +34,36 @@ const RepoDetails = () => {
         url: data.html_url
       }
       setRepoDetails(filteredData);
-      setLoading(false);
     }
     populateRepoDetails();
-  }, []);
+  }, [name, owner]); 
 
-  console.log(repoDetails);
   return (
     <>
-      {loading ? 
+      <div className="spacer"/>
+      {loading ?
         <Loading details/> :
+        error.length > 0 ? <h1 className="error-message">{error}</h1> :
         <>
           <section className="repo-details">
             <h1>{name}</h1>
             <article className="repo-card">
-              <h1>Owner: {owner}</h1>
-              <img className="user-logo" src={repoDetails.owner.avatar_url}></img>
+              <h1 className="owner">Owner: {owner}</h1>
+              <img alt="the avatar of the owner of this repository" className="user-logo" src={repoDetails?.owner.avatar_url}></img>
               <div className="details">
-                <p>Language: {repoDetails.language}</p>
-                <p>Date Created: {repoDetails.dateCreated}</p>
+                <p>Language: {repoDetails?.language}</p>
+                <p>Date Created: {repoDetails?.dateCreated}</p>
                 <div className="row">
-                  <img className="eyeball icon" src={eye}/>
-                  <p>{repoDetails.watchers}</p>
+                  <img alt="an eyeball icon" className="eyeball icon" src={eye}/>
+                  <p>{repoDetails?.watchers}</p>
                 </div>
                 <div className="row">
-                  <img className="star icon" src={star}/>
-                  <p>{repoDetails.stargazers}</p>
+                  <img alt="a yellow star" className="star icon" src={star}/>
+                  <p>{repoDetails?.stargazers}</p>
                 </div>
               </div>
-              <img className="github-logo" src={octocat}></img>
-              <a href={repoDetails.url} target="_blank">
+              <img alt="the GitHub logo" className="github-logo" src={octocat}></img>
+              <a href={repoDetails?.url} rel="noreferrer" target="_blank">
                 <button>View On GitHub</button>
               </a>
             </article>
