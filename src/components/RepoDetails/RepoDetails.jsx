@@ -6,7 +6,7 @@ import githubApiServices from '../../apiServices/github';
 import Loading from '../Loading/Loading';
 import './RepoDetails.scss';
 
-import eye from '../../assets/eye.png';
+import eye from '../../assets/eyeImg.png';
 import octocat from '../../assets/octocat.png';
 import star from '../../assets/star.png';
 
@@ -19,11 +19,14 @@ const RepoDetails = () => {
 
   useEffect(() => {
     const populateRepoDetails = async () => {
+      // error handling happening in github.js to minimize code here
       const data = await githubApiServices.getIndividualRepository(owner, name);
       setLoading(false);
+
       if (data.error) {
         return setError(data.error.message);
       }
+
       const filteredData = {
         name: data.name,
         dateCreated: moment(data.created_at).format('MM-DD-YYYY'),
@@ -33,23 +36,24 @@ const RepoDetails = () => {
         stargazers: data.stargazers_count,
         url: data.html_url
       }
+
       setRepoDetails(filteredData);
     }
+
     populateRepoDetails();
   }, [name, owner]); 
 
   return (
     <>
       <div className="spacer"/>
-      {loading ?
-        <Loading details/> :
+      {loading ? <Loading details/> :
         error.length > 0 ? <h1 className="error-message">{error}</h1> :
         <>
           <section className="repo-details">
             <h1>{name}</h1>
             <article className="repo-card">
               <h1 className="owner">Owner: {owner}</h1>
-              <img alt="the avatar of the owner of this repository" className="user-logo" src={repoDetails?.owner.avatar_url}></img>
+              <img alt="the avatar of the owner of this repository" className="user-logo" src={repoDetails?.owner.avatar_url}/>
               <div className="details">
                 <p>Language: {repoDetails?.language}</p>
                 <p>Date Created: {repoDetails?.dateCreated}</p>
@@ -62,7 +66,7 @@ const RepoDetails = () => {
                   <p>{repoDetails?.stargazers}</p>
                 </div>
               </div>
-              <img alt="the GitHub logo" className="github-logo" src={octocat}></img>
+              <img alt="the GitHub logo" className="github-logo" src={octocat}/>
               <a href={repoDetails?.url} rel="noreferrer" target="_blank">
                 <button>View On GitHub</button>
               </a>
