@@ -1,10 +1,9 @@
 import React from 'react';
-import ResultCard from '../ResultCard/ResultCard';
-import Loading from '../Loading/Loading';
 import PropTypes from 'prop-types';
 
+import ResultCard from '../ResultCard/ResultCard';
+import Loading from '../Loading/Loading';
 import '../../components/Loading/Loading';
-
 import './SearchResults.scss';
 
 const SearchResults = ({results, searchTerm, loading}) => {
